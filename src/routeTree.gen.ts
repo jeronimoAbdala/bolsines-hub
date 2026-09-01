@@ -10,33 +10,92 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as ModeloRouteImport } from './routes/modelo'
+import { Route as RecepcionRouteImport } from './routes/recepcion'
+import { Route as ReportesRouteImport } from './routes/reportes'
+import { Route as SeguimientoRouteImport } from './routes/seguimiento'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ModeloRoute = ModeloRouteImport.update({
+  id: '/modelo',
+  path: '/modelo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecepcionRoute = RecepcionRouteImport.update({
+  id: '/recepcion',
+  path: '/recepcion',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ReportesRoute = ReportesRouteImport.update({
+  id: '/reportes',
+  path: '/reportes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SeguimientoRoute = SeguimientoRouteImport.update({
+  id: '/seguimiento',
+  path: '/seguimiento',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/modelo': typeof ModeloRoute
+  '/recepcion': typeof RecepcionRoute
+  '/reportes': typeof ReportesRoute
+  '/seguimiento': typeof SeguimientoRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/modelo': typeof ModeloRoute
+  '/recepcion': typeof RecepcionRoute
+  '/reportes': typeof ReportesRoute
+  '/seguimiento': typeof SeguimientoRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/modelo': typeof ModeloRoute
+  '/recepcion': typeof RecepcionRoute
+  '/reportes': typeof ReportesRoute
+  '/seguimiento': typeof SeguimientoRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/dashboard' | '/modelo' | '/recepcion' | '/reportes' | '/seguimiento'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    '/' | '/dashboard' | '/modelo' | '/recepcion' | '/reportes' | '/seguimiento'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/modelo'
+    | '/recepcion'
+    | '/reportes'
+    | '/seguimiento'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  ModeloRoute: typeof ModeloRoute
+  RecepcionRoute: typeof RecepcionRoute
+  ReportesRoute: typeof ReportesRoute
+  SeguimientoRoute: typeof SeguimientoRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +107,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/modelo': {
+      id: '/modelo'
+      path: '/modelo'
+      fullPath: '/modelo'
+      preLoaderRoute: typeof ModeloRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recepcion': {
+      id: '/recepcion'
+      path: '/recepcion'
+      fullPath: '/recepcion'
+      preLoaderRoute: typeof RecepcionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reportes': {
+      id: '/reportes'
+      path: '/reportes'
+      fullPath: '/reportes'
+      preLoaderRoute: typeof ReportesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/seguimiento': {
+      id: '/seguimiento'
+      path: '/seguimiento'
+      fullPath: '/seguimiento'
+      preLoaderRoute: typeof SeguimientoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  ModeloRoute: ModeloRoute,
+  RecepcionRoute: RecepcionRoute,
+  ReportesRoute: ReportesRoute,
+  SeguimientoRoute: SeguimientoRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
