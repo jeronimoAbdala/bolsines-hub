@@ -55,7 +55,7 @@ function NavList({
   pathname,
   onNavigate,
 }: {
-  items: readonly { to: LinkProps["to"]; label: string; icon: typeof Gauge }[];
+  items: readonly { to: NonNullable<LinkProps["to"]>; label: string; icon: typeof Gauge }[];
   pathname: string;
   onNavigate?: (() => void) | undefined;
 }) {
