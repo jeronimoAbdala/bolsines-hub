@@ -1,4 +1,4 @@
-import { Link, useRouterState } from "@tanstack/react-router";
+import { Link, useRouterState, type LinkProps } from "@tanstack/react-router";
 import {
   Bell,
   Boxes,
@@ -55,9 +55,9 @@ function NavList({
   pathname,
   onNavigate,
 }: {
-  items: readonly { to: string; label: string; icon: typeof Gauge }[];
+  items: readonly { to: LinkProps["to"]; label: string; icon: typeof Gauge }[];
   pathname: string;
-  onNavigate?: () => void;
+  onNavigate?: (() => void) | undefined;
 }) {
   return (
     <nav className="space-y-1">
@@ -84,7 +84,13 @@ function NavList({
   );
 }
 
-function SidebarBody({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {
+function SidebarBody({
+  pathname,
+  onNavigate,
+}: {
+  pathname: string;
+  onNavigate?: (() => void) | undefined;
+}) {
   return (
     <div className="flex h-full flex-col gap-6 overflow-y-auto p-4">
       <Link to="/dashboard" onClick={onNavigate} className="flex items-center gap-3 px-2 py-1">
